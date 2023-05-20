@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,23 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  serverElements = [{type: 'server', name: 'some name', content: 'some content'}];
-  newServerName = '';
-  newServerContent = '';
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
 
-  onServerAdded(serverData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'server',
-      name: serverData.serverName,
-      content: serverData.serverContent,
-    });
+  onNewNumber(newNumber: number) {
+    if(this._IsEvenNumber(newNumber)) {
+      this.evenNumbers.push(newNumber);
+    } else {
+      this.oddNumbers.push(newNumber)
+    }
   }
 
-  onBlueprintAdded(serverData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'blueprint',
-      name: serverData.serverName,
-      content: serverData.serverContent,
-    });
+  private _IsEvenNumber(num: number) : boolean {
+    return num % 2 === 0;
   }
 }
