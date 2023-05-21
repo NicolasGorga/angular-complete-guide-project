@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 
 @Component({
@@ -7,6 +7,8 @@ import { Recipe } from '../models/recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent {
+    @Output() selectedRecipe = new EventEmitter<Recipe>();
+
     recipes: Recipe[] = [
       {
         name: 'Shakshuka',
@@ -24,4 +26,8 @@ export class RecipeListComponent {
         imagePath: 'https://www.seriouseats.com/thmb/4kbwN13BlZnZ3EywrtG2AzCKuYs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210712-tacos-al-pastor-melissa-hom-seriouseats-37-f72cdd02c9574bceb1eef1c8a23b76ed.jpg',
       },
     ];
+
+    onRecipeSelected(selectedRecipe: Recipe) {
+      this.selectedRecipe.next(selectedRecipe);
+    }
 }

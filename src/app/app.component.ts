@@ -6,4 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  displayFeature: 'recipe' | 'shopping' = 'recipe';
+
+  onRecipeSelected() {
+    this.displayFeature = 'recipe';
+  }
+
+  onShoppingSelected() {
+    this.displayFeature = 'shopping';
+  }
 }
